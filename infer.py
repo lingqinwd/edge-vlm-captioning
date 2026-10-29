@@ -24,8 +24,12 @@ class Captioner:
         model_id = model_id or os.getenv("MODEL_ID", DEFAULT_MODEL_ID)
         device = os.getenv("DEVICE") or ("cuda" if torch.cuda.is_available() else "cpu")
         processor = AutoProcessor.from_pretrained(model_id)
-        model = AutoModelForImageTextToText.from_pretrained(model_id)
-        model.to(device)
+        if device == "cuda":
+            model = AutoModelForImageTextToText.from_pretrained(
+                model_id, torch_dtype=torch.float16, device_map="auto"
+            )
+        else:
+            model = AutoModelForImageTextToText.from_pretrained(model_id)
         model.eval()
         return cls(processor, model, device, model_id)
 
@@ -53,6 +57,3 @@ class Captioner:
         elapsed_ms = (time.perf_counter() - start) * 1000
         text = self.processor.batch_decode(output, skip_special_tokens=True)[0].strip()
         return text, elapsed_ms
-
-
-
