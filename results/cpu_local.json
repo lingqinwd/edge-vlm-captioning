@@ -1,0 +1,1 @@
+{\n  \"input_dir\": \"sample_images\",\n  \"num_images\": 5,\n  \"device\": \"cpu\",\n  \"runtime\": \"Windows Anaconda / PyTorch CPU\",\n  \"average_latency_ms\": 19383.48,\n  \"fastest_latency_ms\": 18675.2,\n  \"slowest_latency_ms\": 20100.44,\n  \"total_latency_ms\": 96917.38\n}\n
