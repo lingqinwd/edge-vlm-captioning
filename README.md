@@ -25,7 +25,7 @@ $env:DEVICE="cpu"    # CPU 回退
 
 ## 多图片实验
 
-将 10～30 张允许再分发的图片放入 `data/images/`，脚本会逐张生成描述，并输出明细 CSV 与汇总 JSON：
+将 5～30 张允许再分发的图片放入 `data/images/`（仓库中的 `sample_images/` 提供了 5 张合成示例图），脚本会逐张生成描述，并输出明细 CSV 与汇总 JSON：
 
 ```powershell
 python benchmark.py `
@@ -34,7 +34,7 @@ python benchmark.py `
   --summary-output results/summary.json
 ```
 
-`summary.json` 包含图片数量、平均延迟、最快延迟、最慢延迟、总延迟和运行设备；`benchmark.csv` 保存每张图片的文件名、设备、延迟和生成描述。CPU 与 GPU 使用同一图片目录分别运行，即可得到可复现的速度对比。
+`summary.json` 包含图片数量、平均延迟、最快延迟、最慢延迟、总延迟和运行设备；`benchmark.csv` 保存每张图片的文件名、设备、延迟和生成描述。CPU 与 GPU 使用同一批图片分别运行，即可得到可复现的速度对比。
 
 ## 实验结果
 
@@ -58,4 +58,5 @@ CPU 结果来自本地 Windows CPU 环境；GPU 结果来自 AUP Learning Cloud 
 - `data/`：数据说明和示例数据目录
 
 项目不包含模型权重、账号密码、访问令牌或私有图片。
+
 
