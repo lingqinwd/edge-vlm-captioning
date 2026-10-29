@@ -1,1 +1,12 @@
-{\n  \"input_dir\": \"data/images\",\n  \"num_images\": 5,\n  \"device\": \"cuda\",\n  \"runtime\": \"AUP Learning Cloud AMD ROCm\",\n  \"model_id\": \"HuggingFaceTB/SmolVLM-256M-Instruct\",\n  \"average_latency_ms\": 848.96,\n  \"fastest_latency_ms\": 144.11,\n  \"slowest_latency_ms\": 3606.73,\n  \"total_latency_ms\": 4244.79,\n  \"latency_scope\": \"model generation only; excludes first model loading\"\n}\n
+{
+  "input_dir": "data/images",
+  "num_images": 5,
+  "device": "cuda",
+  "runtime": "AUP Learning Cloud AMD ROCm",
+  "model_id": "HuggingFaceTB/SmolVLM-256M-Instruct",
+  "average_latency_ms": 848.96,
+  "fastest_latency_ms": 144.11,
+  "slowest_latency_ms": 3606.73,
+  "total_latency_ms": 4244.79,
+  "latency_scope": "model generation only; excludes first model loading"
+}
