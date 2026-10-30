@@ -34,7 +34,21 @@ python benchmark.py `
   --summary-output results/summary.json
 ```
 
-`summary.json` 包含图片数量、平均延迟、最快延迟、最慢延迟、总延迟和运行设备；`benchmark.csv` 保存每张图片的文件名、设备、延迟和生成描述。CPU 与 GPU 使用同一批图片分别运行，即可得到可复现的速度对比。
+`summary.json` 包含图片数量、模型加载时间、平均/P50/P95/最快/最慢延迟、峰值显存、模型大小估计和失败数；`benchmark.csv` 保存每张图片每轮延迟、生成描述和错误信息。CPU 与 GPU 使用同一批图片分别运行，即可得到可复现的速度对比。正式实验示例：
+
+```powershell
+python benchmark.py `
+  --input-dir data/images `
+  --model-id HuggingFaceTB/SmolVLM-256M-Instruct `
+  --dtype fp16 `
+  --warmup 3 `
+  --repeats 3 `
+  --runtime "AUP ROCm R9700" `
+  --output results/smolvlm_256m_fp16.csv `
+  --summary-output results/smolvlm_256m_fp16.json
+```
+
+量化参数会写入结果元数据；实际 INT8/INT4 运行前先执行 `python tools/check_quantization_support.py`，只使用在当前 ROCm 环境中成功导入的量化后端。
 
 ## 升级版实验计划
 
@@ -57,8 +71,11 @@ CPU 结果来自本地 Windows CPU 环境；GPU 结果来自 AUP Learning Cloud 
 
 - `infer.py`：模型加载、设备选择和图像描述推理
 - `app.py`：Gradio Demo
-- `benchmark.py`：多图片批量测试和延迟汇总
+- `benchmark.py`：多图片、多轮次延迟测试和资源统计
 - `download_model.py`：模型缓存脚本
+- `tools/collect_environment.py`：保存 Python、PyTorch、Transformers、GPU 和依赖版本
+- `tools/check_quantization_support.py`：检查 ROCm 量化后端是否可用
+- `tools/aggregate_results.py`：把多次 CSV 测试汇总为 JSON
 - `data/`：27 张合成实验图片、manifest 和可复现生成脚本
 
 项目不包含模型权重、账号密码、访问令牌或私有图片。
