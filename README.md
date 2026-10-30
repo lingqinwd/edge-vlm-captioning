@@ -48,7 +48,7 @@ python benchmark.py `
   --summary-output results/smolvlm_256m_fp16.json
 ```
 
-量化参数会写入结果元数据；实际 INT8/INT4 运行前先执行 `python tools/check_quantization_support.py`，只使用在当前 ROCm 环境中成功导入的量化后端。
+当前默认加载器只执行 FP16/FP32；传入 INT8/INT4 会主动停止，避免把未量化的结果误标成量化结果。实际 INT8/INT4 运行前先执行 `python tools/check_quantization_support.py`，确认 ROCm 后端后再接入对应加载器并保留验证日志。
 
 ## 升级版实验计划
 
