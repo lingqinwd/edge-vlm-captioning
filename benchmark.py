@@ -48,6 +48,11 @@ def run_benchmark(
 ) -> dict:
     if warmup < 0 or repeats < 1:
         raise ValueError("warmup must be >= 0 and repeats must be >= 1")
+    if quantization != "none":
+        raise RuntimeError(
+            "Quantization backend is not applied by the default loader yet. "
+            "Run tools/check_quantization_support.py first, then wire and record a verified backend."
+        )
     if model_id:
         os.environ["MODEL_ID"] = model_id
 
