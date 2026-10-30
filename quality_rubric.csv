@@ -1,0 +1,7 @@
+file,category,reference_caption,content_correctness,detail_completeness,fluency,hallucination
+01_red_circle.png,synthetic,A red circle on a white background,,,,
+02_blue_square.png,synthetic,A blue square on a white background,,,,
+03_green_triangle.png,synthetic,A green triangle on a white background,,,,
+04_sunset.png,synthetic,A sunset gradient with a yellow sun,,,,
+05_checkerboard.png,synthetic,A black and white checkerboard,,,,
+
