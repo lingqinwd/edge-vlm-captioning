@@ -1,7 +1,29 @@
-file,category,license_or_source,notes
-01_red_circle.png,synthetic,generated locally,no personal data
-02_blue_square.png,synthetic,generated locally,no personal data
-03_green_triangle.png,synthetic,generated locally,no personal data
-04_sunset.png,synthetic,generated locally,no personal data
-05_checkerboard.png,synthetic,generated locally,no personal data
+file,category,license_or_source,reference_caption,notes
+01_red_circle.png,object,generated locally,A red circle on a white background.,No personal data; deterministic synthetic image.
+02_blue_square.png,object,generated locally,A blue square on a white background.,No personal data; deterministic synthetic image.
+03_green_triangle.png,object,generated locally,A green triangle on a white background.,No personal data; deterministic synthetic image.
+04_sunset.png,scene,generated locally,A sunset gradient with a yellow sun.,No personal data; deterministic synthetic image.
+05_checkerboard.png,pattern,generated locally,A black and white checkerboard.,No personal data; deterministic synthetic image.
+06_yellow_star.png,object,generated locally,A yellow star on a blue background.,No personal data; deterministic synthetic image.
+07_orange_circle.png,object,generated locally,An orange circle on a gray background.,No personal data; deterministic synthetic image.
+08_purple_rectangle.png,object,generated locally,A purple rectangle on a white background.,No personal data; deterministic synthetic image.
+09_red_ball.png,object,generated locally,A red ball with a small shadow.,No personal data; deterministic synthetic image.
+10_vertical_stripes.png,pattern,generated locally,A pattern of alternating blue and white vertical stripes.,No personal data; deterministic synthetic image.
+11_horizontal_stripes.png,pattern,generated locally,A pattern of alternating green and white horizontal stripes.,No personal data; deterministic synthetic image.
+12_concentric_circles.png,pattern,generated locally,Several concentric circles in different colors.,No personal data; deterministic synthetic image.
+13_diagonal_pattern.png,pattern,generated locally,A blue and white diagonal line pattern.,No personal data; deterministic synthetic image.
+14_sunset_scene.png,scene,generated locally,A yellow sun is setting over a dark horizon.,No personal data; deterministic synthetic image.
+15_house_scene.png,scene,generated locally,A small house with a red roof on green grass.,No personal data; deterministic synthetic image.
+16_road_scene.png,scene,generated locally,A road leads toward the horizon under a blue sky.,No personal data; deterministic synthetic image.
+17_park_scene.png,scene,generated locally,A green tree stands in a sunny park.,No personal data; deterministic synthetic image.
+18_cat_icon.png,animal,generated locally,A gray cat icon with pointed ears.,No personal data; deterministic synthetic image.
+19_fish_icon.png,animal,generated locally,A blue fish swimming to the right.,No personal data; deterministic synthetic image.
+20_sign_ai.png,text,generated locally,A blue sign with the letters AI.,No personal data; deterministic synthetic image.
+21_sign_stop.png,text,generated locally,A red sign with the word STOP.,No personal data; deterministic synthetic image.
+22_number_123.png,text,generated locally,A black number 123 on a white background.,No personal data; deterministic synthetic image.
+23_sign_ok.png,text,generated locally,A green sign with the word OK.,No personal data; deterministic synthetic image.
+24_color_gradient.png,abstract,generated locally,A smooth gradient from purple to orange.,No personal data; deterministic synthetic image.
+25_large_checker.png,pattern,generated locally,A large black and white checkerboard.,No personal data; deterministic synthetic image.
+26_orange_dots.png,pattern,generated locally,An orange dotted pattern on a pale background.,No personal data; deterministic synthetic image.
+27_mountain_scene.png,scene,generated locally,Two gray mountains rise above a green foreground.,No personal data; deterministic synthetic image.
 
