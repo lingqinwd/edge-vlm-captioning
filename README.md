@@ -25,7 +25,7 @@ $env:DEVICE="cpu"    # CPU 回退
 
 ## 多图片实验
 
-将 5～30 张允许再分发的图片放入 `data/images/`（仓库中的 `sample_images/` 提供了 5 张合成示例图），脚本会逐张生成描述，并输出明细 CSV 与汇总 JSON：
+仓库已在 `data/images/` 准备 27 张确定性合成图片，`data/manifest.csv` 记录类别和参考描述；也可以追加有明确许可的真实图片，脚本会逐张生成描述，并输出明细 CSV 与汇总 JSON：
 
 ```powershell
 python benchmark.py `
@@ -35,6 +35,10 @@ python benchmark.py `
 ```
 
 `summary.json` 包含图片数量、平均延迟、最快延迟、最慢延迟、总延迟和运行设备；`benchmark.csv` 保存每张图片的文件名、设备、延迟和生成描述。CPU 与 GPU 使用同一批图片分别运行，即可得到可复现的速度对比。
+
+## 升级版实验计划
+
+项目的正式扩展方案见 [`EXPERIMENT_PLAN.md`](EXPERIMENT_PLAN.md)，模型和运行参数见 [`model_configs.yaml`](model_configs.yaml)。正式实验先完成 3 个模型的 FP16 对比，再在 ROCm 兼容的后端上测试 INT8/INT4；每个配置使用同一批图片并重复 3 次。质量评分模板位于 [`quality_rubric.csv`](quality_rubric.csv)，其中 27 行评分项已预填，分数留待人工盲评。
 
 ## 实验结果
 
@@ -55,8 +59,9 @@ CPU 结果来自本地 Windows CPU 环境；GPU 结果来自 AUP Learning Cloud 
 - `app.py`：Gradio Demo
 - `benchmark.py`：多图片批量测试和延迟汇总
 - `download_model.py`：模型缓存脚本
-- `data/`：数据说明和示例数据目录
+- `data/`：27 张合成实验图片、manifest 和可复现生成脚本
 
 项目不包含模型权重、账号密码、访问令牌或私有图片。
+
 
 
