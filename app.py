@@ -52,8 +52,8 @@ def _bar_chart(rows: list[tuple[str, float]]) -> str:
 def run_single(image, model_label: str, precision: str):
     if image is None:
         return "请先上传图片。", _metric_card("等待输入", "—", "选择图片后开始"), ""
-    if precision.startswith("INT"):
-        return "当前环境尚未验证该量化后端。请先运行量化兼容性检查，再进行实测。", _metric_card("量化状态", "待验证", "避免把未量化结果误标"), ""
+    if not precision.startswith("FP16"):
+        return "当前页面只执行已验证的 FP16 推理；FP32/INT8/INT4 需要先接入并验证对应加载后端。", _metric_card("配置状态", "待验证", "避免把未实测结果误标"), ""
     started = time.perf_counter()
     try:
         captioner = _get_captioner(model_label)
@@ -72,8 +72,8 @@ def run_single(image, model_label: str, precision: str):
 def run_batch(files, model_label: str, precision: str):
     if not files:
         return [], _bar_chart([]), _metric_card("批量状态", "—", "请选择多张图片")
-    if precision.startswith("INT"):
-        return [], _bar_chart([]), _metric_card("量化状态", "待验证", "当前环境未执行量化推理")
+    if not precision.startswith("FP16"):
+        return [], _bar_chart([]), _metric_card("配置状态", "待验证", "当前环境未执行该精度推理")
     try:
         captioner = _get_captioner(model_label)
     except Exception as exc:
@@ -92,9 +92,13 @@ def run_batch(files, model_label: str, precision: str):
             rows.append([path.name, "失败", f"{type(exc).__name__}: {exc}", captioner.device])
     values = [float(row[1]) for row in rows if isinstance(row[1], (int, float))]
     if values:
+        ordered = sorted(values)
+        p50 = ordered[(len(ordered) - 1) // 2]
+        p95 = ordered[min(len(ordered) - 1, int(len(ordered) * 0.95))]
         summary = ''.join([
             _metric_card("图片数量", str(len(rows)), "批量输入"),
             _metric_card("平均延迟", f"{sum(values)/len(values):.0f} ms", "生成阶段"),
+            _metric_card("P50 / P95", f"{p50:.0f} / {p95:.0f} ms", "典型 / 尾部体验"),
             _metric_card("最快 / 最慢", f"{min(values):.0f} / {max(values):.0f} ms", "样本范围"),
         ])
     else:
@@ -137,7 +141,7 @@ with gr.Blocks(title="Edge VLM Studio", css=CSS, theme=gr.themes.Soft(primary_hu
         with gr.Column(scale=4, elem_classes="panel"):
             gr.Markdown("### 选择实验配置")
             model = gr.Dropdown(list(MODEL_OPTIONS), value=list(MODEL_OPTIONS)[0], label="模型")
-            precision = gr.Dropdown(["FP16 · GPU 推荐", "FP32 · CPU/兼容模式", "INT8 · 后端验证后启用", "INT4 · 后端验证后启用"], value="FP16 · GPU 推荐", label="精度 / 量化")
+            precision = gr.Dropdown(["FP16 · 当前已验证", "FP32 · 加载器待接入", "INT8 · ROCm 后端待验证", "INT4 · ROCm 后端待验证"], value="FP16 · 当前已验证", label="精度 / 量化")
             gr.Markdown("**建议路径**：先完成三个模型的 FP16 基线，再根据 ROCm 后端检查结果执行量化实验。")
         with gr.Column(scale=6, elem_classes="panel"):
             gr.Markdown("### 单图探索")
