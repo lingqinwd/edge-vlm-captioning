@@ -1,0 +1,2 @@
+model_id,dtype,quantization,quant_backend,device,runtime,num_images,model_load_ms,average_latency_ms,p50_latency_ms,p95_latency_ms,fastest_latency_ms,slowest_latency_ms,peak_memory_mb,model_size_mb_estimate,failure_count,notes
+
